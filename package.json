@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "http://shakil0031.github.io/client",
+  "homepage": "http://shakil00725.github.io/client",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.14",
