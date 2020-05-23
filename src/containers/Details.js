@@ -24,7 +24,7 @@ export default class Details extends React.Component {
 
     render(){
         if (this.state.redirect) {
-            return <Redirect push to={{pathname: '/articles',state: {keywords:this.state.keywords}}}/>;
+            return <Redirect push to={{pathname: '/inside/articles',state: {keywords:this.state.keywords}}}/>;
         }
 
         return(

@@ -36,7 +36,7 @@ export default class ResultsData extends React.Component {
 
     render() {
         if (this.state.detailsPage) {
-            return <Redirect push to={{pathname: '/details',state: {keywords:this.state.keywords}}}/>;
+            return <Redirect push to={{pathname: '/inside/details',state: {keywords:this.state.keywords}}}/>;
         }
 
         return (
