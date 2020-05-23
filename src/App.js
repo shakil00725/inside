@@ -12,15 +12,13 @@ import {
 function App() {
   return (
     <div className="App">
-      <h1>hello</h1>
-      {/* <Router>
+      <Router>
         <Switch>
-
-          <Route path="/" exact component={Home}/>
-          <Route path="/articles" component={ResultsData}/>
-          <Route path="/details" component={Details}/>
+          <Route path="/inside/" exact component={Home}/>
+          <Route path="/inside/articles" component={ResultsData}/>
+          <Route path="/inside/details" component={Details}/>
         </Switch>
-      </Router> */}
+      </Router>
     </div>
   );
 }
