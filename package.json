@@ -1,7 +1,7 @@
 {
   "name": "inside",
   "version": "0.1.0",
-  "homepage": "http://shakil00725.github.io/inside",
+  "homepage": "https://shakil00725.github.io/inside/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.14",
