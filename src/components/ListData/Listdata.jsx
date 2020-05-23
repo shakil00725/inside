@@ -19,21 +19,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ListData = ({ results, detailsPageClicked }) => {
+const ListData = ({ results, detailsPageClicked, answers}) => {
     const classes = useStyles();
     return (
         <div className={classes.wrapper} >
             <List>
-                {results.map(result => {
+                {results.map((result,index) => {
                     return (
-                        <div key={result.name} onClick={()=>detailsPageClicked(100)}>
+                        <div key={index} onClick={()=>detailsPageClicked(results[index],answers[index])}>
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
                                         <DescriptionIcon />
                                     </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText>Title of the article</ListItemText>
+                                <ListItemText>{result}</ListItemText>
                             </ListItem>
                             <Divider variant="inset" component="li" /> 
                         </div>

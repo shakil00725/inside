@@ -6,7 +6,9 @@ import DetailsPage from '../components/DetailsPage/Details';
 export default class Details extends React.Component {
     state = {
         keywords: '',
-        redirect:false
+        redirect:false,
+        answer:'',
+        question:'',
     }
 
     handleSearchWord = (event) => {
@@ -22,9 +24,18 @@ export default class Details extends React.Component {
         }
     }
 
+    componentDidMount(){
+        const { keywords, question, answer } = this.props.location.state;
+        this.setState({
+            keywords:keywords,
+            question:question,
+            answer:answer
+        })
+    }
+
     render(){
         if (this.state.redirect) {
-            return <Redirect push to={{pathname: '/inside/articles',state: {keywords:this.state.keywords}}}/>;
+            return <Redirect to={{pathname: '/inside/articles',state: {keywords:this.state.keywords}}}/>;
         }
 
         return(
@@ -35,7 +46,7 @@ export default class Details extends React.Component {
                 searchButtonClicked={this.searchButtonClicked}
                 value={this.state.keywords}
             />
-            <DetailsPage />
+            <DetailsPage question={this.state.question} answer={this.state.answer}/>
         </div> 
         )}
 }

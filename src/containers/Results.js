@@ -10,6 +10,10 @@ export default class ResultsData extends React.Component {
         searchResults: [],
         isLoading:false,
         detailsPage: false,
+        questionList:[],
+        answerList:[],
+        selectedAnswer:'',
+        selectedQuestion:'',
     }
 
     handleSearchWord = (event) => {
@@ -20,23 +24,34 @@ export default class ResultsData extends React.Component {
     searchButtonClicked = () => {
         const { keywords } = this.state;
         if (keywords.length > 0) {
-            this.getTheSearchResults(keywords)
+            this.getResults(keywords)
         }
     }
 
     componentDidMount(){
         const { keywords } = this.props.location.state;
-        this.getTheSearchResults(keywords)
+        this.getResults(keywords)
         this.setState({keywords:keywords})
     }
 
-    detailsPageClicked = (id) => {
-        this.setState({detailsPage:true})
+    detailsPageClicked = (question,answer) => {
+        this.setState({
+            detailsPage:true,
+            selectedAnswer:answer,
+            selectedQuestion:question,
+        })
+
     }
 
     render() {
         if (this.state.detailsPage) {
-            return <Redirect push to={{pathname: '/inside/details',state: {keywords:this.state.keywords}}}/>;
+            return <Redirect 
+                        push to={{pathname: '/inside/details',
+                        state: {
+                            keywords:this.state.keywords,
+                            question:this.state.selectedQuestion,
+                            answer:this.state.selectedAnswer,
+                        }}}/>;
         }
 
         return (
@@ -47,18 +62,18 @@ export default class ResultsData extends React.Component {
                         searchButtonClicked={this.searchButtonClicked}
                         value={this.state.keywords}
                     />
-                    <ListData results={this.state.searchResults} detailsPageClicked={this.detailsPageClicked}/>
+                    <ListData results={this.state.questionList} answers={this.state.answerList} detailsPageClicked={this.detailsPageClicked}/>
                 </div> 
         )
     }
 
-    async getTheSearchResults(Key) {
+    async getResults(Key) {
         try {
-            const Results = await axios.get("https://jsonplaceholder.typicode.com/users");
-            const data = await Results.data;
-            this.setState({ searchResults: data })
-            console.log("Result page",Key)
-            console.log(this.state.searchResults)
+            const Results = await axios.get("http://127.0.0.1:5000/");
+            const Data = await Results.data;
+            const Answers = Data.answers;
+            const Questions = Data.query;
+            this.setState({ questionList: Questions, answerList: Answers})
         } catch (error) {
             console.log(error)
         }

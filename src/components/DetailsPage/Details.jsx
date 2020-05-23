@@ -11,23 +11,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Details = () => {
+const Details = ({question,answer}) => {
     const classes = useStyles();
     return (
         <Paper className={classes.wrapper} variant="outlined" square >
-            <Typography style={{ margin: '10px' }} align="left" variant="h2" component="h2">
-                h1. Heading
+            <Typography style={{ margin: '10px' }} align="left" variant="h6" component="h2">
+                {question}
             </Typography>
-            <Divider variant="fullWidth" component="li" />
+            <Divider variant="fullWidth" component="nav" />
             <Typography style={{ margin: '10px' }} align="left" variant="body2" component="h2">
-                We're kicking off a new video series focusing on core Optimize features, specifically on how to create a test in less than five minutes.
-
-                Our first video – How to create a new experiment in Optimize– explains how to create a new A/B test in three steps. First we show you how to create a variant using the Optimize visual editor. Then we target website visitors from a specific city, and finally we use one of the built-in Google Analytics goals as an objective and start our test.
-
-                Learn more about how to create an A/B test and the different experiment types (like redirect and MVT) supported by Optimize.
-
-                – Happy Optimizing!
-                We're kicking off a new video series focusing on core Optimize features, specifically on how to create a test in less than five minutes. Our first video – How to create a new experiment in Optimize– explains how to create a new A/B test in three steps. First we show you how to create a variant using the Optimize visual editor. Then we target website visitors from a specific city, and finally we use one of the built-in Google Analytics goals as an objective and start our test. Learn more about how to create an A/B test and the different experiment types (like redirect and MVT) supported by Optimize. – Happy Optimizing!
+                {answer}
             </Typography>
         </Paper>
     )
