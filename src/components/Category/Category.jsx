@@ -5,6 +5,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Grid from "@material-ui/core/Grid";
 
 const Article = [1, 2, 3, 4];
 
@@ -26,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
 const Category = () => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <div className={classes.wrapper}>
+        <Grid container justify='center'>
+        <Grid item md={8} lg={8} sm={11} xs={11}>
                 {
                     Article.map(article => {
                         return (
@@ -51,8 +52,8 @@ const Category = () => {
                         )
                     })
                 }
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     )
 }
 
