@@ -69,10 +69,16 @@ export default class ResultsData extends React.Component {
 
     async getResults(Key) {
         try {
-            const Results = await axios.get("http://127.0.0.1:5000/");
-            const Data = await Results.data;
-            const Answers = Data.answers;
-            const Questions = Data.query;
+
+            const Results = await axios({
+                                method: 'post',
+                                url: 'https://insidemapssearch.herokuapp.com/getAll',
+                                data: { "key": Key},
+                                headers: {'Content-Type': 'application/json' }
+                                })
+            const Data =await Results.data;
+            const Answers = Data.answers ? Data.answers: [];
+            const Questions = Data.query ? Data.query: [];
             this.setState({ questionList: Questions, answerList: Answers})
         } catch (error) {
             console.log(error)
