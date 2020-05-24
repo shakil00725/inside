@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 const Details = ({question,answer}) => {
     const classes = useStyles();
     return (
-        <Paper className={classes.wrapper} variant="outlined" square >
+        <Paper className={classes.wrapper} variant="outlined"  elevation={3}>
             <Typography style={{ margin: '10px' }} align="left" variant="h6" component="h2">
                 {question}
             </Typography>

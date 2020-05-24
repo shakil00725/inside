@@ -32,7 +32,7 @@ const Category = () => {
                     Article.map(article => {
                         return (
                             <div key={article}>
-                            <ExpansionPanel>
+                            <ExpansionPanel style={{ marginBottom:'8px', border:".5px solid grey"}}>
                                 <ExpansionPanelSummary
                                     expandIcon={<ExpandMoreIcon color='primary' />}
                                     aria-controls="panel1a-content"
@@ -40,7 +40,7 @@ const Category = () => {
                                 >
                                 <Typography className={classes.heading}>Expansion Panel 1</Typography>
                                 </ExpansionPanelSummary>
-                                <ExpansionPanelDetails>
+                                <ExpansionPanelDetails style={{ background:' #dbe8f7 '}}>
                                 <Typography>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
                                         sit amet blandit leo lobortis eget.

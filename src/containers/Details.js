@@ -25,13 +25,29 @@ export default class Details extends React.Component {
     }
 
     componentDidMount(){
-        const { keywords, question, answer } = this.props.location.state;
+        const { question, answer } = this.props.location.state;
         this.setState({
-            keywords:keywords,
             question:question,
             answer:answer
         })
+       
     }
+
+    handleKeyPress = (event) => {
+        if(event.key === 'Enter'){
+            const { keywords } = this.state;
+            if (keywords.length > 0) {
+                console.log("details",keywords);
+                this.setState({keywords: keywords ,redirect: true})
+            }
+            console.log(keywords)
+        }
+    }
+
+    homeButton = () => {
+        this.props.history.push('/inside/') 
+    }
+    
 
     render(){
         if (this.state.redirect) {
@@ -41,6 +57,8 @@ export default class Details extends React.Component {
         return(
             <div>
             <Header
+                handleKeyPress={this.handleKeyPress}
+                homeButton={this.homeButton}
                 singlePage={false}
                 handleSearchWord={this.handleSearchWord}
                 searchButtonClicked={this.searchButtonClicked}

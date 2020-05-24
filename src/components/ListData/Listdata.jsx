@@ -7,6 +7,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
@@ -19,10 +20,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ListData = ({ results, detailsPageClicked, answers}) => {
+const ListData = ({keywords, results, detailsPageClicked, answers}) => {
     const classes = useStyles();
     return (
         <div className={classes.wrapper} >
+            <Typography style={{ margin: '10px' }} align="left" variant="body2" component="h2">
+                    Search results for " {keywords} "
+            </Typography>
             <List>
                 {results.map((result,index) => {
                     return (
@@ -33,7 +37,8 @@ const ListData = ({ results, detailsPageClicked, answers}) => {
                                         <DescriptionIcon />
                                     </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText>{result}</ListItemText>
+                                {/* <ListItemText>{result}</ListItemText> */}
+                                <ListItemText primary={result} secondary={answers[index].substring(0,150)+'..'} />
                             </ListItem>
                             <Divider variant="inset" component="li" /> 
                         </div>

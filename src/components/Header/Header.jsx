@@ -15,7 +15,7 @@ import Paper from '@material-ui/core/Paper';
 import { InputBase } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { Redirect } from "react-router-dom";
+import ClearIcon from '@material-ui/icons/Clear';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -33,25 +33,41 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   input: {
-    marginLeft: theme.spacing(3),
+    marginLeft: theme.spacing(5),
     background: 'white',
     height: '50px',
-    width: '50%',
-    borderRadius: '5px',
-    margin:'5px',
+    width: '40%',
+    margin:'10px',
+    borderRadius: '7px',
+    paddingLeft:'50px',
     boxShadow: '1px .5px 4px '
   },
   inputField: {
     paddingLeft: theme.spacing(2),
-    fontSize: '1rem',
+    fontSize: '.9rem',
   },
   iconButton: {
     padding: theme.spacing(1),
     marginLeft: theme.spacing(0.5),
   },
+
+  leftIcon:{
+      width:'20px',
+      display:'relative',
+      right:'-90px',
+      top:'1px',
+      zIndex:'1'
+  },
+  rightIcon:{
+    width:'20px',
+    display:'relative',
+    left:'-50px',
+    top:'1px',
+    zIndex:'2'
+}
 }));
 
-const Header = ({ singlePage, handleSearchWord, searchButtonClicked,value }) => {
+const Header = ({handleKeyPress, homeButton,singlePage, handleSearchWord, searchButtonClicked,value }) => {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -72,7 +88,7 @@ const Header = ({ singlePage, handleSearchWord, searchButtonClicked,value }) => 
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <ListItem button key={"Home"} onClick={()=><Redirect push to='/articles' />}>
+        <ListItem button key={"Home"} onClick={homeButton}>
           <ListItemIcon><MailIcon /></ListItemIcon>
           <ListItemText primary={"Home"} />
         </ListItem>
@@ -100,18 +116,22 @@ const Header = ({ singlePage, handleSearchWord, searchButtonClicked,value }) => 
           </AppBar>
           {/* Search Page */}
           <Paper className={classes.wrapper} square={true} elevation={0}>
-            <Typography color='primary' variant="h4" component="h2">
+            <Typography color='primary' variant="h5" component="h2">
               How can we help you?
                          </Typography>
             <div style={{ width: '100%', marginTop: '20px' }}>
+              <IconButton className={classes.leftIcon} aria-label="search" onClick={searchButtonClicked}>
+                    <SearchIcon />
+              </IconButton>
               <InputBase
+                onKeyPress={handleKeyPress}
                 onChange={handleSearchWord}
                 className={classes.input}
                 inputProps={{ 'aria-label': 'id no.', className: classes.inputField }}
-                placeholder="Search" />
-              <IconButton className={classes.iconButton} aria-label="search" onClick={searchButtonClicked}>
-                <SearchIcon />
-              </IconButton>
+                placeholder="Describe your issue.." />
+                <IconButton disabled className={classes.rightIcon} aria-label="search" >
+                    {values?<ClearIcon />:''}
+                </IconButton>
             </div>
           </Paper>
         </React.Fragment>
@@ -124,15 +144,19 @@ const Header = ({ singlePage, handleSearchWord, searchButtonClicked,value }) => 
                   <MenuIcon />
                 </IconButton>
                 <div style={{ width: '100%' }}>
-                  <InputBase
-                    value={values}
-                    onChange={handleSearchWord}
-                    className={classes.input}
-                    inputProps={{ 'aria-label': 'id no.', className: classes.inputField }}
-                    placeholder="Search" />
-                  <IconButton className={classes.iconButton} aria-label="search" onClick={searchButtonClicked}>
+                <IconButton className={classes.leftIcon} aria-label="search" onClick={searchButtonClicked}>
                     <SearchIcon />
-                  </IconButton>
+              </IconButton>
+              <InputBase
+                onKeyPress={handleKeyPress}
+                value={values}
+                onChange={handleSearchWord}
+                className={classes.input}
+                inputProps={{ 'aria-label': 'id no.', className: classes.inputField }}
+                placeholder="Describe your issue.." />
+                <IconButton disabled className={classes.rightIcon} aria-label="search">
+                    {values?<ClearIcon />:''}
+                </IconButton>
                 </div>
                 <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
                   {list('left')}

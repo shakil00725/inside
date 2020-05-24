@@ -21,6 +21,20 @@ export default class Home extends React.Component {
         }
     }
 
+    handleKeyPress = (event) => {
+        if(event.key === 'Enter'){
+            const { keywords } = this.state;
+            if (keywords.length > 0) {
+                this.setState({ redirect: true})
+            }
+            console.log(keywords)
+        }
+    }
+
+    homeButton = () => {
+        this.props.history.push('/inside/') 
+    }
+
     render() {
         if (this.state.redirect) {
             return <Redirect push to={{pathname: '/inside/articles', state: {keywords:this.state.keywords}}}/>;
@@ -28,7 +42,10 @@ export default class Home extends React.Component {
 
         return(
             <div>
-                <Header 
+                <Header
+                    handleKeyPress={this.handleKeyPress}
+                    value={this.state.keywords}
+                    homeButton={this.homeButton} 
                     singlePage={true}
                     handleSearchWord={this.handleSearchWord} 
                     searchButtonClicked={this.searchButtonClicked} 
