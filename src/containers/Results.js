@@ -97,8 +97,6 @@ export default class ResultsData extends React.Component {
             const Answers = Data.answers?Data.answers:[];
             const Questions = Data.query?Data.query:[];
             console.log(Results)
-            console.log(Answers)
-            console.log(Questions)
             this.setState({ questionList: Questions, answerList: Answers, isLoading:true})
         } catch (error) {
             console.log(error)

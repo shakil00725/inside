@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     background: 'white',
     height: '45px',
     width: '75%',
-    margin: '1px',
+    margin: '7px',
     borderRadius: '7px',
     paddingLeft: '40px',
     boxShadow: '1px .5px 4px '
@@ -146,13 +146,13 @@ const Header = ({ handleKeyPress, homeButton, singlePage, handleSearchWord, sear
         <React.Fragment>
           <AppBar color='inherit' position="static">
             <Toolbar>
-              <Grid container justify='center'>
-                <Grid item lg={2} xs={1}>
+              <Grid container justify='flex-start'>
+                <Grid item md={1} xs={1}>
                   <IconButton onClick={toggleDrawer('left', true)} edge="start" color="inherit" aria-label="menu" >
                     <MenuIcon />
                   </IconButton>
                 </Grid>
-                <Grid item lg={9} xs={11}>
+                <Grid item md={8} xs={11}>
                   <IconButton className={classes.leftIcon} aria-label="search" onClick={searchButtonClicked}>
                     <SearchIcon />
                   </IconButton>
