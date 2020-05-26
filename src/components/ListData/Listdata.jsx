@@ -15,7 +15,7 @@ const ListData = ({keywords, results, detailsPageClicked, answers}) => {
         <Grid container spacing={2} justify="center">
             <Grid item lg={8} xs={11}>
                 <Typography style={{ marginTop: '20px' }} align="left" variant="body2" component="h2">
-                        Search results for " {keywords} "
+                        Search results for " {keywords} ", {results.length} results found,
                 </Typography>
             </Grid>
             <Grid item lg={8} xs={11}>

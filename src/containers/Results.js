@@ -30,7 +30,6 @@ export default class ResultsData extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.state.keywords);
         const { keywords } = this.props.location.state;
         this.getResults(keywords)
         this.setState({keywords:keywords})
@@ -95,8 +94,7 @@ export default class ResultsData extends React.Component {
             const Results = await axios.post("https://insidemapssearch.herokuapp.com/getAll",{ "key": Key});
             const Data = Results.data;
             const Answers = Data.answers?Data.answers:[];
-            const Questions = Data.query?Data.query:[];
-            console.log(Results)
+            const Questions = Data.query?Data.query:[];    
             this.setState({ questionList: Questions, answerList: Answers, isLoading:true})
         } catch (error) {
             console.log(error)
