@@ -113,6 +113,7 @@ const Header = ({ handleKeyPress, homeButton, singlePage, handleSearchWord, sear
                 		<IconButton onClick={toggleDrawer('left', true)} edge="start" color="inherit" aria-label="menu" >
                   			<MenuIcon />
                 		</IconButton>
+                    <Typography variant="h6">Insidemaps Knowledge Base</Typography>
                 		<Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
                   			{sideList('left')}
             			</Drawer>
@@ -153,7 +154,7 @@ const Header = ({ handleKeyPress, homeButton, singlePage, handleSearchWord, sear
                 		<MenuIcon />
               		</IconButton>
               		<Grid container justify='center'>
-                		<Grid item md={5} xs={11}>
+                		<Grid item md={6} xs={11}>
                   			<Paper elevation={2}  className={classes.landingSearch}>
                     			<IconButton onClick={searchButtonClicked} type="submit" className={classes.iconButtonM} aria-label="search">
                       				<SearchIcon />

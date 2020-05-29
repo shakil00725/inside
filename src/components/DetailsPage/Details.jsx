@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 const Details = ({ question, answer }) => {
     return (
         <Grid style={{ background:'white', height:'100vh'}} container justify="center">
-            <Grid item md={9} xs={11}>
+            <Grid item md={8} xs={11}>
                 <Paper style={{ marginTop: '20px' }}variant="outlined" elevation={3}>
                     <Typography style={{ margin: '10px', fontSize:'1.5rem' }} align="left" variant="h1" component="h2">
                         {question}

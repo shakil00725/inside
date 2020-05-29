@@ -49,7 +49,7 @@ export default class Home extends React.Component {
                     handleSearchWord={this.handleSearchWord} 
                     searchButtonClicked={this.searchButtonClicked} 
                 />
-                <Category /> 
+                {/* <Category />  */}
             </div>
         )}
 }
