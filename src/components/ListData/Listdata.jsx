@@ -22,7 +22,7 @@ const ListData = ({keywords, results, detailsPageClicked, answers}) => {
             <List>
                 {results.map((result,index) => {
                     return (
-                        <div key={index} onClick={()=>detailsPageClicked(results[index],answers[index])}>
+                        <div style={{ cursor:'pointer'}} key={index} onClick={()=>detailsPageClicked(results[index],answers[index])}>
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
