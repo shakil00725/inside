@@ -91,7 +91,7 @@ export default class ResultsData extends React.Component {
 
     async getResults(Key) {
         try {
-            const Results = await axios.post("https://insidemapssearch.herokuapp.com/getAll",{ "key": Key});
+            const Results = await axios.post("https://insidemapssearch-api.herokuapp.com/getAll",{ "key": Key});
             const Data = Results.data;
             const Answers = Data.answers?Data.answers:[];
             const Questions = Data.query?Data.query:[];    
