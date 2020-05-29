@@ -27,7 +27,6 @@ export default class Home extends React.Component {
             if (keywords.length > 0) {
                 this.setState({ redirect: true})
             }
-            console.log(keywords)
         }
     }
 
@@ -50,7 +49,7 @@ export default class Home extends React.Component {
                     handleSearchWord={this.handleSearchWord} 
                     searchButtonClicked={this.searchButtonClicked} 
                 />
-                <Category />
+                <Category /> 
             </div>
         )}
 }

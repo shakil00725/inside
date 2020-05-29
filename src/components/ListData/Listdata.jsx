@@ -12,13 +12,13 @@ import Grid from "@material-ui/core/Grid";
 
 const ListData = ({keywords, results, detailsPageClicked, answers}) => {
     return (
-        <Grid container spacing={2} justify="center">
-            <Grid item lg={8} xs={11}>
-                <Typography style={{ marginTop: '20px' }} align="left" variant="body2" component="h2">
-                        Search results for " {keywords} ", {results.length} results found,
+        <Grid style={{ background:'white'}} container spacing={2} justify="center">
+            <Grid item md={7} xs={11}>
+                <Typography style={{ marginTop: '20px', fontSize:'1.2rem'}} align="left" variant="h1" component="h1">
+                        Search results for {keywords}
                 </Typography>
             </Grid>
-            <Grid item lg={8} xs={11}>
+            <Grid item md={7} xs={11}>
             <List>
                 {results.map((result,index) => {
                     return (

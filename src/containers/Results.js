@@ -50,7 +50,7 @@ export default class ResultsData extends React.Component {
             if (keywords.length > 0) {
                 this.getResults(keywords)
             }
-            console.log(keywords)
+            
         }
     }
 
@@ -96,6 +96,7 @@ export default class ResultsData extends React.Component {
             const Answers = Data.answers?Data.answers:[];
             const Questions = Data.query?Data.query:[];    
             this.setState({ questionList: Questions, answerList: Answers, isLoading:true})
+            console.log(Answers)
         } catch (error) {
             console.log(error)
         }

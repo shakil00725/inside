@@ -28,7 +28,7 @@ const Category = () => {
     const classes = useStyles();
     return (
         <Grid container justify='center'>
-        <Grid item md={8} lg={8} sm={11} xs={11}>
+        <Grid item md={4} xs={11} >
                 {
                     Article.map(article => {
                         return (
