@@ -126,7 +126,7 @@ const Header = ({ handleKeyPress, homeButton, singlePage, handleSearchWord, sear
               		<CardMedia component="img" className={classes.logo} src={logo} alt="logo" />
             	</Grid>
             	<Typography variant="h1" className={classes.title}>
-              		How can we help you?
+              		How can we help you
             	</Typography>
             	<Grid container justify="center">
               		<Grid item md={4} xs={11}>
