@@ -17,8 +17,11 @@ import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
-import Home  from "@material-ui/icons/Home";
+import Home from "@material-ui/icons/Home";
 import logo from '../../logo.png';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -27,22 +30,22 @@ const useStyles = makeStyles((theme) => ({
     height: '3rem',
   },
   headerContainer: {
-	display: "flex",
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-	width: "100vw",
-  textAlign: "center",
-  height:'450px'
+    display: "flex",
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: "100vw",
+    textAlign: "center",
+    height: '450px'
   },
   landingSearch: {
-      padding: '2px 4px',
-      display: 'flex',
-      
+    padding: '2px 4px',
+    display: 'flex',
+
   },
   inputM: {
     marginLeft: theme.spacing(1),
-    flex:1
+    flex: 1
   },
   iconButtonM: {
     padding: 10,
@@ -67,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ handleKeyPress, homeButton, singlePage, handleSearchWord, searchButtonClicked, value }) => {
+const Header = ({ autoComplete, handleKeyPress, homeButton, singlePage, handleSearchWord, searchButtonClicked, value }) => {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -103,78 +106,115 @@ const Header = ({ handleKeyPress, homeButton, singlePage, handleSearchWord, sear
       </List>
     </Box>
   )
+
   return (
+
     <div>
-    {singlePage ?
+      {singlePage ?
         <React.Fragment>
-          	<AppBar style={{ backgroundColor: "#2979FF" }} position="static">
-            	<Toolbar>
-              		<React.Fragment>
-                		<IconButton onClick={toggleDrawer('left', true)} edge="start" color="inherit" aria-label="menu" >
-                  			<MenuIcon />
-                		</IconButton>
-                    <Typography variant="h6">Insidemaps Knowledge Base</Typography>
-                		<Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
-                  			{sideList('left')}
-            			</Drawer>
-        			</React.Fragment>
-            	</Toolbar>
-            </AppBar>
+          <AppBar style={{ backgroundColor: "#2979FF" }} position="static">
+            <Toolbar>
+              <React.Fragment>
+                <IconButton onClick={toggleDrawer('left', true)} edge="start" color="inherit" aria-label="menu" >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6">Insidemaps Knowledge Base </Typography>
+                <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
+                  {sideList('left')}
+                </Drawer>
+              </React.Fragment>
+            </Toolbar>
+          </AppBar>
           {/* Search Page */}
-        	<Box className={classes.headerContainer}>
-            	<Grid container justify="center">
-              		<CardMedia component="img" className={classes.logo} src={logo} alt="logo" />
-            	</Grid>
-            	<Typography variant="h1" className={classes.title}>
-              		How can we help you
+          <Box className={classes.headerContainer}>
+            <Grid container justify="center">
+              <CardMedia component="img" className={classes.logo} src={logo} alt="logo" />
+            </Grid>
+            <Typography variant="h1" className={classes.title}>
+              How can we help you ?
             	</Typography>
-            	<Grid container justify="center">
-              		<Grid item md={4} xs={11}>
-                		<Paper  elevation={2} className={classes.landingSearch}>
-                  			<IconButton onClick={searchButtonClicked} type="submit" className={classes.iconButtonM} aria-label="search">
-                    			<SearchIcon />
-                  			</IconButton>
-                  			<InputBase
-                    			onKeyPress={handleKeyPress}
-                    			onChange={handleSearchWord}
-                    			className={classes.inputM}
-                    			placeholder="Describe your issue"
-                    			inputProps={{ 'aria-label': 'Describe your issue' }}
-                  			/>
-                		</Paper>
-              		</Grid>
-            	</Grid>
-          	</Box>
+            <Grid container justify="center">
+              <Grid item md={4} xs={11}>
+                <Paper elevation={2} className={classes.landingSearch}>
+                  <IconButton onClick={searchButtonClicked} type="submit" className={classes.iconButtonM} aria-label="search">
+                    <SearchIcon />
+                  </IconButton>
+                  {/* <InputBase
+                    onKeyPress={handleKeyPress}
+                    onChange={handleSearchWord}
+                    className={classes.inputM}
+                    placeholder="Describe your issue"
+                  /> */}
+                  <Autocomplete
+                    freeSolo
+                    className={classes.inputM}
+                    options={autoComplete}
+                    getOptionLabel={option => option}
+                    renderInput={params => (
+                      <TextField
+                        {...params}
+                        placeholder="Describe your issue"
+                        onKeyPress={handleKeyPress}
+                        onChange={handleSearchWord}
+                        margin="normal"
+                        InputProps={{ ...params.InputProps, disableUnderline: true }}
+                        fullWidth
+                      />
+                    )}
+                  />
+                </Paper>
+                <div>
+                </div>
+              </Grid>
+            </Grid>
+          </Box>
         </React.Fragment>
         :
         <React.Fragment>
-          	<AppBar style={{ backgroundColor: "#2979FF" }} position="static">
-            	<Toolbar>
-              		<IconButton onClick={toggleDrawer('left', true)} edge="start" color="inherit" aria-label="menu" >
-                		<MenuIcon />
-              		</IconButton>
-              		<Grid container justify='center'>
-                		<Grid item md={6} xs={11}>
-                  			<Paper elevation={2}  className={classes.landingSearch}>
-                    			<IconButton onClick={searchButtonClicked} type="submit" className={classes.iconButtonM} aria-label="search">
-                      				<SearchIcon />
-                    			</IconButton>
-                    			<InputBase
-                      				value={value}
-                      				onKeyPress={handleKeyPress}
-                      				onChange={handleSearchWord}
-                      				className={classes.inputM}
-                      				placeholder="Describe your issue"
-                      				inputProps={{ 'aria-label': 'Describe your issue'}}
-                    			/>
-                  			</Paper>
-                		</Grid>
-                		<Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
-                  			{sideList('left')}
-                		</Drawer>
-              		</Grid>
-            	</Toolbar>
-          	</AppBar>
+          <AppBar style={{ backgroundColor: "#2979FF" }} position="static">
+            <Toolbar>
+              <IconButton onClick={toggleDrawer('left', true)} edge="start" color="inherit" aria-label="menu" >
+                <MenuIcon />
+              </IconButton>
+              <Grid container justify='center'>
+                <Grid item md={6} xs={11}>
+                  <Paper elevation={2} className={classes.landingSearch}>
+                    <IconButton onClick={searchButtonClicked} type="submit" className={classes.iconButtonM} aria-label="search">
+                      <SearchIcon />
+                    </IconButton>
+                    {/* <InputBase
+                      value={value}
+                      onKeyPress={handleKeyPress}
+                      onChange={handleSearchWord}
+                      className={classes.inputM}
+                      placeholder="Describe your issue"
+                      inputProps={{ 'aria-label': 'Describe your issue' }}
+                    /> */}
+                    <Autocomplete
+                      freeSolo
+                      className={classes.inputM}
+                      options={autoComplete}
+                      getOptionLabel={option => option}
+                      renderInput={params => (
+                        <TextField
+                          {...params}
+                          placeholder="Describe your issue"
+                          onKeyPress={handleKeyPress}
+                          onChange={handleSearchWord}
+                          margin="normal"
+                          InputProps={{ ...params.InputProps, disableUnderline: true }}
+                          fullWidth
+                        />
+                      )}
+                    />
+                  </Paper>
+                </Grid>
+                <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
+                  {sideList('left')}
+                </Drawer>
+              </Grid>
+            </Toolbar>
+          </AppBar>
         </React.Fragment>}
     </div>
   )
